@@ -1,10 +1,12 @@
+![Agentic Portfolio Simulator banner](assets/banner.svg)
+
 # Portfolio research and walk-forward simulation
 
 **LLM extension added:** [workflow and verification status](LLM_WORKFLOW.md). The original deterministic demo below is preserved; statements about its lack of model calls describe that core mode. The extension has live-call code, a bounded revision loop and a single-agent baseline, tested offline; no successful live run has been recorded.
 
 A deterministic research harness with research, quant, portfolio and risk stages. It compares the resulting portfolios with momentum and equal-weight baselines, using a shared dated simulator and transaction-cost model.
 
-Start with [the 3½-hour study guide](STUDY_GUIDE.md) and the heavily commented `learn.py`. The guide includes 12 focused interview questions, fee arithmetic, timing examples and modification exercises. The existing `INTERVIEW_QUESTIONS.md` is a longer optional reference; the study guide describes the currently verified scope.
+Start with [the study guide](STUDY_GUIDE.md) and the heavily commented `learn.py`. The guide covers fee arithmetic, timing examples, validation boundaries, and modification exercises for the complete simulation path.
 
 ## Run
 
