@@ -1,0 +1,52 @@
+# Default configuration for agentic-portfolio-sim.
+# Loaded by src/agentic_portfolio/config.py
+
+universe:
+  - AAPL
+  - MSFT
+  - GOOGL
+  - AMZN
+  - META
+  - NVDA
+  - JPM
+  - XOM
+  - JNJ
+  - PG
+
+benchmark: SPY
+
+data:
+  start_date: "2018-01-01"
+  end_date: "2026-09-01"
+  provider: yfinance   # yfinance | local
+  raw_dir: data/raw
+  processed_dir: data/processed
+
+simulation:
+  rebalance_freq: W-FRI      # weekly, decisions made using data through Friday's close
+  initial_capital: 1_000_000
+  transaction_cost_bps: 10   # 10 bps = 0.10% of traded notional, applied per trade
+  min_history_days: 65       # minimum lookback needed before the first rebalance (>= longest feature window)
+
+portfolio_constraints:
+  long_only: true
+  max_position_weight: 0.20
+  max_gross_exposure: 1.00
+  min_cash_weight: 0.00
+  max_turnover_per_rebalance: 1.00   # 1.00 = unconstrained; tighten to test turnover ablations
+
+momentum_baseline:
+  lookback_days: 60
+  top_n: 5
+  vol_lookback_days: 20
+  cash_weight: 0.00
+
+risk:
+  var_confidence: 0.95
+  es_confidence: 0.95
+  var_lookback_days: 250
+  max_portfolio_volatility: 0.30    # annualized; Risk Agent scales down exposure if a proposal's ex-ante vol exceeds this
+  max_historical_var_95: 0.04       # daily loss fraction; Risk Agent scales down exposure if breached
+  min_proposal_confidence: 0.15     # Risk Agent rejects (holds prior portfolio) below this confidence
+
+random_seed: 42
